@@ -1,0 +1,12 @@
+a {
+  text-decoration: none !important;
+  color: inherit !important;
+}
+.card-img {
+  width: 200px;
+  height: 200px;
+}
+.filter {
+  background-color: #343a40 !important;
+  color: white !important;
+}
