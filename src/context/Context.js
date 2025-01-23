@@ -13,7 +13,8 @@ const CartProvider = ({ children }) => {
     const products = [...Array(20)].map(() => ({
         id: faker.string.uuid(),
         name: faker.commerce.productName(),
-        price: faker.commerce.price(),
+        price: Number(faker.commerce.price()),
+        totalPrice: 0,
         quantity: 1,
         image: 	faker.image.url({ width: 300, height: 200 }),
         inStock: faker.helpers.arrayElement([0, 3, 5, 7, 9, 11]),

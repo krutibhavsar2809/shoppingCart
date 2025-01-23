@@ -8,7 +8,7 @@ const Header = () => {
     const { filterState: { searchQuery }, filterDispatch, cartState: { cart } } = useCartContext();
     const navigate = useNavigate();
     return (
-        <Navbar bg="dark" variant='dark' expand="lg" style={{ height: 80 }}>
+        <Navbar bg="dark" variant='dark' expand="lg" style={{ height: 80, width: '100%' }}>
             <Navbar.Brand>
                 <Link to="/">Shopping Cart</Link>
             </Navbar.Brand>
@@ -24,7 +24,7 @@ const Header = () => {
             <Dropdown style={{ marginLeft: 10 }}>
                 <Dropdown.Toggle variant="success" id="dropdown-basic">
                     <FaCartShopping />
-                    <Badge bg="success">0</Badge>
+                    <Badge bg="success">{cart.length}</Badge>
                 </Dropdown.Toggle>
                 <Dropdown.Menu style={{ maxWidth: "370px" }} className='text-center'>
                     {cart.length > 0

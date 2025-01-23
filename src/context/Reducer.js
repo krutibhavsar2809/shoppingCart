@@ -15,14 +15,18 @@ export const cartReducer = (state, action) => {
                 ...state,
                 cart: [
                     ...state.cart.map((product) => {
-                        if (product.id === action.payload.id) {
+                        const updatedProduct = { ...product };
+                        if (updatedProduct.id === action.payload.id) {
                             if (action.payload.type === 'INC') {
-                                product.quantity++;
+                                updatedProduct.quantity += 1;
                             } else {
-                                product.quantity--;
+                                if (updatedProduct.quantity > 1) {
+                                    updatedProduct.quantity -= 1;
+                                }
                             }
+                            updatedProduct.totalPrice = Number((updatedProduct.quantity * updatedProduct.price).toFixed(2));                           
                         }
-                        return product;
+                        return updatedProduct;
                     })
                 ]
             }

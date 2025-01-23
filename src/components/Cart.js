@@ -4,7 +4,7 @@ import { useCartContext } from '../context/Context';
 
 const Cart = () => {
   const { cartState: { cart }, cartDispatch } = useCartContext();
-  const total = Number(cart.reduce((acc, curr) => acc + Number(curr.price), 0).toFixed(2));
+  const total = Number(cart.reduce((acc, curr) => acc + Number(curr.totalPrice !== 0 ? curr.totalPrice : curr.price), 0).toFixed(2));
 
   return (
     <Container fluid>
@@ -18,11 +18,11 @@ const Cart = () => {
               <Col md={6} key={product.name}>
                 <Card.Body>
                   <Card.Title>{product.name}</Card.Title>
-                  <Card.Text>{product.price}</Card.Text>
+                  <Card.Text>{product.totalPrice !== 0 ? product.totalPrice : product.price}</Card.Text>
                   <Card.Text>
-                    <Button>-</Button>
+                    <Button onClick={() => cartDispatch({ type: 'CHANGE_QUANTITY', payload: { type: 'DEC', id: product.id }})}>-</Button>
                       {product.quantity}
-                    <Button>+</Button>
+                    <Button onClick={() => cartDispatch({ type: 'CHANGE_QUANTITY', payload: { type: 'INC', id: product.id }})}>+</Button>
                   </Card.Text>
                   <Card.Text>
                       {product.fastDelivery ? 'Fast Delivery' : '4 days minimum'}
